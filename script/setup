@@ -1,6 +1,11 @@
-#!/usr/bin/env sh
-cd "$(dirname "$0")/.."
+#!/bin/sh
+# Setups the repository.
 
-git submodule init
+# Stop on errors
+set -e
+
+cd "$(dirname "$0")/.."
 script/bootstrap
-python3 setup.py develop
+
+pre-commit install
+pip3 install -e .
